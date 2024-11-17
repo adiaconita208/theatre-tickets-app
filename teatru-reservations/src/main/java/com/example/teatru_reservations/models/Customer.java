@@ -6,8 +6,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,8 +36,7 @@ public class Customer {
     @Column(name = "client_phone", length = 15)
     private String clientPhone;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "created_at")
-    private Instant createdAt;
+    @OneToMany(mappedBy = "idClient")
+    private Set<com.example.teatru_reservations.models.Reservation> reservations = new LinkedHashSet<>();
 
 }

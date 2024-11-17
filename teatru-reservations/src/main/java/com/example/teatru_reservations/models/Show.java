@@ -9,6 +9,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,7 +18,7 @@ import java.time.Instant;
 @Table(name = "Shows", schema = "theatre")
 public class Show {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Show", nullable = false)
     private Integer id;
 
@@ -40,5 +42,11 @@ public class Show {
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "ID_Hall")
     private Hall idHall;
+
+    @OneToMany(mappedBy = "idShow")
+    private Set<Distribution> distributions = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idShow")
+    private Set<com.example.teatru_reservations.models.Ticket> tickets = new LinkedHashSet<>();
 
 }

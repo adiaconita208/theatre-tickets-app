@@ -9,6 +9,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,7 +18,7 @@ import java.math.BigDecimal;
 @Table(name = "Tickets", schema = "theatre")
 public class Ticket {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Ticket", nullable = false)
     private Integer id;
 
@@ -39,5 +41,8 @@ public class Ticket {
     @OnDelete(action = OnDeleteAction.SET_NULL)
     @JoinColumn(name = "ID_Hall")
     private Hall idHall;
+
+    @OneToMany(mappedBy = "idTicket")
+    private Set<Reservation> reservations = new LinkedHashSet<>();
 
 }

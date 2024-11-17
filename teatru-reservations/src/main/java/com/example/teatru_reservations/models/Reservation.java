@@ -16,7 +16,7 @@ import java.time.Instant;
 @Table(name = "Reservations", schema = "theatre")
 public class Reservation {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Reservation", nullable = false)
     private Integer id;
 
@@ -31,9 +31,5 @@ public class Reservation {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_Ticket", nullable = false)
     private com.example.teatru_reservations.models.Ticket idTicket;
-
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "reserved_at")
-    private Instant reservedAt;
 
 }

@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -24,5 +27,11 @@ public class Hall {
     @NotNull
     @Column(name = "capacity", nullable = false)
     private Integer capacity;
+
+    @OneToMany(mappedBy = "idHall")
+    private Set<com.example.teatru_reservations.models.Show> shows = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idHall")
+    private Set<com.example.teatru_reservations.models.Ticket> tickets = new LinkedHashSet<>();
 
 }

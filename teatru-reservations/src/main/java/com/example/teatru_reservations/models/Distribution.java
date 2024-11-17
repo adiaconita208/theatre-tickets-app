@@ -14,7 +14,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "Distribution", schema = "theatre")
 public class Distribution {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Distribution", nullable = false)
     private Integer id;
 

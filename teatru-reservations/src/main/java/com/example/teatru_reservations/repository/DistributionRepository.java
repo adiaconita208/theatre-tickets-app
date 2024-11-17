@@ -1,7 +1,7 @@
 package com.example.teatru_reservations.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.teatru_reservations.models.Distribution;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
