@@ -36,6 +36,9 @@ public class Customer {
     @Column(name = "client_phone", length = 15)
     private String clientPhone;
 
+    @Column(name = "password", nullable = false, length = 100)
+    private String password;
+
     @OneToMany(mappedBy = "idClient")
     private Set<com.example.teatru_reservations.models.Reservation> reservations = new LinkedHashSet<>();
 
