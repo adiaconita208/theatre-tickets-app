@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Pagina Principală</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
-<div class="main-container">
-    <h2>Shows</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>Show Title</th>
-            <th>Director</th>
-            <th>Show Date</th>
-            <th>Show Time (Minutes)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="show : ${shows}">
-            <td th:text="${show.title}"></td>
-            <td th:text="${show.director}">
-            <td th:text="${#dates.format(show.showDate, 'yyyy-MM-dd HH:mm')}"></td>
-            <td th:text="${show.durationMinutes}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<h1>Lista Spectacolelor</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Data Spectacol</th>
+        <th>Titlu Spectacol</th>
+        <th>Sală</th>
+        <th>Durata</th>
+        <th>Locuri Disponibile</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="show : ${shows}">
+        <td th:text="${#dates.format(show.showDate, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${show.title}"></td>
+        <td th:text="${show.hallName}"></td>
+        <td th:text="${show.durationMinutes}"></td>
+        <td th:text="${show.availableSeats}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
