@@ -24,7 +24,7 @@ public class Reservation {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "ID_Client", nullable = false)
-    private Customer idClient;
+    private Customer customer;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

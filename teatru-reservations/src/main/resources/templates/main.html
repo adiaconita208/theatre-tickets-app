@@ -35,7 +35,7 @@
         <td th:text="${show.durationMinutes}"></td>
         <td th:text="${show.availableSeats}"></td>
         <td>
-            <form th:action="@{/reserve}" method="post">
+            <form th:action="@{/reserve-ticket}" method="post">
                 <input type="hidden" th:value="${show.id}" name="showId">
                 <button type="submit" th:if="${show.availableSeats > 0}">Ia bilet</button>
                 <span th:if="${show.availableSeats == 0}">Sold out</span>

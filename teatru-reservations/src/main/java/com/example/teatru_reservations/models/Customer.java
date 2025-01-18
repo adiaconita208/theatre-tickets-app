@@ -39,7 +39,7 @@ public class Customer {
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
-    @OneToMany(mappedBy = "idClient")
+    @OneToMany(mappedBy = "customer")
     private Set<com.example.teatru_reservations.models.Reservation> reservations = new LinkedHashSet<>();
 
 }

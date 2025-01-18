@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Biletele Mele</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<h1>Biletele Mele</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID Bilet</th>
+        <th>Spectacol</th>
+        <th>Număr Loc</th>
+        <th>Data și Ora</th>
+        <th>Acțiune</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations}">
+        <td th:text="${reservation.idTicket.id}"></td>
+        <td th:text="${reservation.idTicket.idShow.title}"></td>
+        <td th:text="${reservation.idTicket.seatNumber}"></td>
+        <td th:text="${#dates.format(reservation.idTicket.idShow.showDate, 'dd-MM-yyyy HH:mm')}"></td>
+        <td>
+            <form th:action="@{/delete-reservation}" method="post" onsubmit="return confirm('Sigur doriți să ștergeți această rezervare?');">
+                <input type="hidden" name="reservationId" th:value="${reservation.id}" />
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/profile">Înapoi la Profil</a>
+</body>
+</html>
