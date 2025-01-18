@@ -31,6 +31,9 @@ public class Ticket {
     @Column(name = "seat_number", nullable = false, length = 10)
     private String seatNumber;
 
+    @Column(name = "reserved", nullable = false)
+    private boolean reserved = false;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

@@ -1,5 +1,47 @@
 /* styles.css */
 
+/* Header principal */
+.main-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.header-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.header-button {
+    text-decoration: none;
+    color: white;
+    background-color: #0056b3;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.header-button:hover {
+    background-color: #003d80;
+}
+
 /* Stilizare generală pentru pagină */
 body {
     font-family: Arial, sans-serif;

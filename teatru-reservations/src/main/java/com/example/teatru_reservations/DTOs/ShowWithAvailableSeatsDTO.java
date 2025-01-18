@@ -3,13 +3,15 @@ package com.example.teatru_reservations.DTOs;
 import java.time.Instant;
 
 public class ShowWithAvailableSeatsDTO {
+    private Integer id;
     private String title;
     private String hallName;
     private Long availableSeats;
     private Instant showDate;
     private Integer durationMinutes;
 
-    public ShowWithAvailableSeatsDTO(String title, String hallName, Long availableSeats, Instant showDate, Integer durationMinutes) {
+    public ShowWithAvailableSeatsDTO(Integer id, String title, String hallName, Long availableSeats, Instant showDate, Integer durationMinutes) {
+        this.id = id;
         this.title = title;
         this.hallName = hallName;
         this.availableSeats = availableSeats;
@@ -18,6 +20,14 @@ public class ShowWithAvailableSeatsDTO {
     }
 
     // Getters și Setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Instant getShowDate() {
         return showDate;

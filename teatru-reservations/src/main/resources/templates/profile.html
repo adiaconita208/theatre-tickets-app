@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profil Utilizator</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<header class="main-header">
+    <div class="header-container">
+        <h1 class="header-title">Profil Utilizator</h1>
+        <nav class="header-nav">
+            <a href="/" class="header-button">Acasă</a>
+            <a href="/my-tickets" class="header-button">Biletele Mele</a>
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <button type="submit">Logout</button>
+            </form>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <h2>Bine ai venit, <span th:text="${user.clientName}"></span>!</h2>
+    <p><strong>Email:</strong> <span th:text="${user.clientEmail}"></span></p>
+    <p><strong>Telefon:</strong> <span th:text="${user.clientPhone}"></span></p>
+</main>
+
+
+<!-- Formular pentru actualizarea numărului de telefon -->
+<h2>Actualizează Numărul de Telefon</h2>
+<form th:action="@{/profile/update-phone}" method="post">
+    <label for="phone">Număr de Telefon:</label>
+    <input type="text" id="phone" name="phone" th:value="${user.clientPhone}" required>
+    <br>
+    <button type="submit">Actualizează</button>
+</form>
+
+<!-- Mesaj de succes/eroare -->
+<p th:if="${success}" style="color: green;" th:text="${success}"></p>
+<p th:if="${error}" style="color: red;" th:text="${error}"></p>
+</body>
+</html>

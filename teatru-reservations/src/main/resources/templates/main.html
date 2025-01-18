@@ -5,6 +5,16 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
+
+<header class="main-header">
+    <div class="header-container">
+        <nav class="header-nav">
+            <a href="/profile" class="header-button">Profil</a>
+            <a href="/my-tickets" class="header-button">Biletele Mele</a>
+        </nav>
+    </div>
+</header>
+
 <h1>Lista Spectacolelor</h1>
 <table border="1">
     <thead>
@@ -17,12 +27,20 @@
     </tr>
     </thead>
     <tbody>
+
     <tr th:each="show : ${shows}">
         <td th:text="${#dates.format(show.showDate, 'dd-MM-yyyy HH:mm')}"></td>
         <td th:text="${show.title}"></td>
         <td th:text="${show.hallName}"></td>
         <td th:text="${show.durationMinutes}"></td>
         <td th:text="${show.availableSeats}"></td>
+        <td>
+            <form th:action="@{/reserve}" method="post">
+                <input type="hidden" th:value="${show.id}" name="showId">
+                <button type="submit" th:if="${show.availableSeats > 0}">Ia bilet</button>
+                <span th:if="${show.availableSeats == 0}">Sold out</span>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
