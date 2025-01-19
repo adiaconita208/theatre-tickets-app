@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <h1>Panoul de Admin</h1>
 
 <h2>Gestionează Spectacole</h2>
+<a href="/admin/add-show">Adaugă un Nou Spectacol</a>
 <table border="1">
     <thead>
     <tr>
@@ -49,6 +51,141 @@
         <td>
             <a th:href="@{/admin/delete-user(id=${user.id})}" onclick="return confirm('Sigur doriți să ștergeți acest utilizator?')">Șterge</a>
         </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 1. Lista rezervărilor -->
+<h2>Lista Rezervărilor</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Spectacol</th>
+        <th>Utilizator</th>
+        <th>Email</th>
+        <th>Loc</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="res : ${reservations}">
+        <td th:text="${res[0]}"></td>
+        <td th:text="${res[1]}"></td>
+        <td th:text="${res[2]}"></td>
+        <td th:text="${res[3]}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 2. Top spectacole -->
+<h2>Top Spectacole cu Cele Mai Multe Rezervări</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Spectacol</th>
+        <th>Rezervări</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="top : ${topShows}">
+        <td th:text="${top[0]}"></td>
+        <td th:text="${top[1]}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 3. Utilizatori fără rezervări -->
+<h2>Utilizatori Fără Rezervări</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nume</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${usersWithoutReservations}">
+        <td th:text="${user[0]}"></td>
+        <td th:text="${user[1]}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 4. Actori în mai multe spectacole -->
+<h2>Actori în Mai Multe Spectacole</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nume Actor</th>
+        <th>Total Spectacole</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="actor : ${actorsInMultipleShows}">
+        <td th:text="${actor[0]}"></td>
+        <td th:text="${actor[1]}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 1. Spectacole fără rezervări -->
+<h2>Spectacole fără rezervări</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Titlu</th>
+        <th>Data</th>
+        <th>Durata</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="show : ${showsWithoutReservations}">
+        <td th:text="${show[0]}"></td>
+        <td th:text="${#dates.format(show[1], 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${show[2]}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- 2. Cel mai rezervat utilizator -->
+<h2>Cel Mai Puternic Utilizator</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Nume</th>
+        <th>Email</th>
+        <th>Rezervări</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${topCustomer}">
+        <td th:text="${user[0]}"></td>
+        <td th:text="${user[1]}"></td>
+        <td th:text="${user[2]}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<!-- 4. Actori fără spectacole viitoare -->
+<h2>Actori Fără Spectacole Viitoare</h2>
+<ul>
+    <li th:each="actor : ${actorsWithoutUpcomingShows}" th:text="${actor}"></li>
+</ul>
+
+<h2>Spectacole cu Cele Mai Puține Locuri Disponibile</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Titlu</th>
+        <th>Capacitate</th>
+        <th>Bilete Disponibile</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="show : ${showsWithFewestTickets}">
+        <td th:text="${show[0]}"></td>
+        <td th:text="${show[1]}"></td>
+        <td th:text="${show[2]}"></td>
     </tr>
     </tbody>
 </table>

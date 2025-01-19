@@ -1,102 +1,20 @@
-/* styles.css */
-
-/* Header principal */
-.main-header {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-}
-
-.header-title {
-    font-size: 1.5em;
-    margin: 0;
-}
-
-.header-nav {
-    display: flex;
-    gap: 10px;
-}
-
-.header-button {
-    text-decoration: none;
-    color: white;
-    background-color: #0056b3;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-}
-
-.header-button:hover {
-    background-color: #003d80;
-}
-
-/* Stilizare generală pentru pagină */
+/* Stilizare generală */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    line-height: 1.6;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f4f4f9;
     color: #333;
 }
 
-/* Stilizare pentru titlu */
-h1 {
-    text-align: center;
+h1, h2 {
     color: #444;
     margin-bottom: 20px;
-    font-size: 2em;
 }
 
-/* Tabelul spectacolelor */
-table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Headerele tabelului */
-table th {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px;
-    text-align: left;
-    font-size: 1.1em;
-}
-
-/* Celulele tabelului */
-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Rândurile alternative */
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* Rândurile la hover */
-table tr:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
-}
-
-/* Linkuri */
 a {
-    color: #007BFF;
+    color: #007bff;
     text-decoration: none;
 }
 
@@ -104,17 +22,144 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Butoane */
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
+/* Header */
+header {
+    background: #007bff;
+    color: #fff;
     padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-    background-color: #0056b3;
+header a {
+    color: #fff;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabele */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+table tr:hover {
+    background: #f1f1f1;
+}
+
+/* Formulare */
+form {
+    margin: 20px 0;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form input:focus, form select:focus, form button:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+form button {
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+/* Butoane */
+button, a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:hover, a.button:hover {
+    background: #0056b3;
+}
+
+button.danger, a.button.danger {
+    background: #dc3545;
+}
+
+button.danger:hover, a.button.danger:hover {
+    background: #c82333;
+}
+
+/* Mesaje */
+.alert {
+    padding: 10px;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.alert.success {
+    background: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    margin-top: 30px;
+    border-radius: 8px 8px 0 0;
 }

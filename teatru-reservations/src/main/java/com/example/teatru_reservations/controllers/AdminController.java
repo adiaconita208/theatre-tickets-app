@@ -1,6 +1,7 @@
 package com.example.teatru_reservations.controllers;
 
 import com.example.teatru_reservations.models.Show;
+import com.example.teatru_reservations.repository.AdminRepository;
 import com.example.teatru_reservations.repository.CustomerRepository;
 import com.example.teatru_reservations.repository.ShowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,24 @@ public class AdminController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private AdminRepository adminRepository;
+
     @GetMapping("/admin")
     public String getAdminDashboard(Model model) {
         // Adaugă spectacolele și utilizatorii pentru afișare
         model.addAttribute("shows", showRepository.findAll());
         model.addAttribute("users", customerRepository.findAll());
+
+        model.addAttribute("reservations", adminRepository.findReservationsForShows());
+        model.addAttribute("topShows", adminRepository.findTopShowsByReservations());
+        model.addAttribute("usersWithoutReservations", adminRepository.findUsersWithoutReservations());
+        model.addAttribute("actorsInMultipleShows", adminRepository.findActorsInMultipleShows());
+
+        model.addAttribute("showsWithoutReservations", adminRepository.findShowsWithoutReservations());
+        model.addAttribute("topCustomer", adminRepository.findTopCustomer());
+        model.addAttribute("actorsWithoutUpcomingShows", adminRepository.findActorsWithoutUpcomingShows());
+        model.addAttribute("showsWithFewestTickets", adminRepository.findShowsWithFewestAvailableTickets());
 
         return "admin-dashboard"; // Șablonul Thymeleaf pentru dashboard
     }
@@ -77,6 +91,37 @@ public class AdminController {
         show.setDurationMinutes(durationMinutes);
 
         showRepository.save(show);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/admin/add-show")
+    public String showAddShowForm(Model model) {
+        model.addAttribute("show", new Show()); // Creează un obiect gol pentru binding
+        return "add-show"; // Redirecționează către șablonul Thymeleaf pentru formular
+    }
+
+    @PostMapping("/admin/add-show")
+    public String addShow(@ModelAttribute("show") Show show, @RequestParam("showDateString") String showDate) {
+        try {
+
+            System.out.println("Show date: " + showDate);
+
+            LocalDateTime localDateTime = LocalDateTime.parse(showDate, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+            Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
+
+            System.out.println("LocalDateTime: " + localDateTime);
+            System.out.println("Instant: " + instant);
+
+            // Setăm valoarea convertită
+            show.setShowDate(instant);
+
+            // Salvează spectacolul
+            showRepository.save(show);
+        } catch (Exception e) {
+            // Loghează eroarea și returnează un mesaj prietenos
+            e.printStackTrace();
+            return "redirect:/admin/add-show?error=invalid_date";
+        }
         return "redirect:/admin";
     }
 }
