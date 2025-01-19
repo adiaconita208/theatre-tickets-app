@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<h1>Panoul de Admin</h1>
+
+<h2>Gestionează Spectacole</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titlu</th>
+        <th>Data</th>
+        <th>Durata</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="show : ${shows}">
+        <td th:text="${show.id}"></td>
+        <td th:text="${show.title}"></td>
+        <td th:text="${#dates.format(show.showDate, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${show.durationMinutes} + ' minute'"></td>
+        <td>
+            <a th:href="@{/admin/edit-show(id=${show.id})}">Editează</a> |
+            <a th:href="@{/admin/delete-show(id=${show.id})}" onclick="return confirm('Sigur doriți să ștergeți acest spectacol?')">Șterge</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Gestionează Utilizatori</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nume</th>
+        <th>Email</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.clientName}"></td>
+        <td th:text="${user.clientEmail}"></td>
+        <td>
+            <a th:href="@{/admin/delete-user(id=${user.id})}" onclick="return confirm('Sigur doriți să ștergeți acest utilizator?')">Șterge</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/">Înapoi la Pagina Principală</a>
+</body>
+</html>

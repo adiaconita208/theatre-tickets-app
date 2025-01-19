@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Actorii Spectacolului</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<h1>Actorii pentru Spectacol</h1>
+
+<!-- Mesaj pentru lista goală -->
+<p th:if="${message}" th:text="${message}"></p>
+
+<!-- Listă de actori -->
+<ul th:if="${actors}">
+    <li th:each="actor : ${actors}" th:text="${actor}"></li>
+</ul>
+
+<a th:href="@{/}">Înapoi la Pagina Principală</a>
+</body>
+</html>

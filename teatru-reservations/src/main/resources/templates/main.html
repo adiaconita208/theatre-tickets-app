@@ -15,6 +15,15 @@
     </div>
 </header>
 
+<!-- Formular pentru selectarea spectacolului -->
+<form th:action="@{/actors-by-show}" method="get">
+    <label for="showSelect">Selectează un spectacol:</label>
+    <select id="showSelect" name="showId">
+        <option th:each="show : ${shows}" th:value="${show.id}" th:text="${show.title}"></option>
+    </select>
+    <button type="submit">Vezi Actorii</button>
+</form>
+
 <h1>Lista Spectacolelor</h1>
 <table border="1">
     <thead>
